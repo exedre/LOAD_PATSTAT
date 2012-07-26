@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="LOAD_PATSTAT : PATSTAT DB Loading in Mysql" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>LOAD_PATSTAT</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/exedre/LOAD_PATSTAT">View on GitHub</a>
+
+          <h1 id="project_title">LOAD_PATSTAT</h1>
+          <h2 id="project_tagline">PATSTAT DB Loading in Mysql</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/exedre/LOAD_PATSTAT/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/exedre/LOAD_PATSTAT/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Import script for PATSTAT</h1>
+
+<h2>Prerequisites</h2>
+
+<p>All PATSTAT txt files should be decompressed in a load path as configured in setup.sh</p>
+
+<h2>Use</h2>
+
+<p>Go in bin and:</p>
+
+<ul>
+<li>Configure setup.sh</li>
+</ul><div class="highlight"><pre>    <span class="nb">export </span><span class="nv">APPL</span><span class="o">=</span>patstat
+    <span class="nb">export </span><span class="nv">REL</span><span class="o">=</span>04
+    <span class="nb">export </span><span class="nv">YEAR</span><span class="o">=</span>2012
+    <span class="nb">export </span><span class="nv">MYSQL</span><span class="o">=</span>mysql
+    <span class="nb">export </span><span class="nv">MYSQLADM</span><span class="o">=</span>mysqladmin
+    <span class="nb">export </span><span class="nv">MYSQLDUMP</span><span class="o">=</span>mysqldump
+    <span class="nb">export </span><span class="nv">MYISAMCHK</span><span class="o">=</span>myisamchk
+    <span class="nb">export </span><span class="nv">MYISAMPACK</span><span class="o">=</span>myisampack
+    <span class="nb">export </span><span class="nv">USER</span><span class="o">=</span>root
+    <span class="nb">export </span><span class="nv">PASS</span><span class="o">=</span>root
+    <span class="nb">export </span><span class="nv">SOCKET</span><span class="o">=</span>/opt/local/var/run/mysql5/mysqld.sock
+    <span class="nb">export </span><span class="nv">LOADPATH</span><span class="o">=</span>/Users/Shared/PATSTAT-DVD
+    <span class="nb">export </span><span class="nv">ZIPARCHIVE</span><span class="o">=</span>/Users/Shared/PATSTAT-DVD
+    <span class="nb">export </span><span class="nv">RELEASE</span><span class="o">=</span>Patstat_<span class="k">${</span><span class="nv">YEAR</span><span class="k">}</span>_<span class="k">${</span><span class="nv">REL</span><span class="k">}</span>
+    <span class="nb">export </span><span class="nv">MYSQLVARPATH</span><span class="o">=</span>/var/mysql
+    <span class="nb">export </span><span class="nv">DUMPFILE</span><span class="o">=</span><span class="nv">$HOME</span>/dumps/<span class="k">${</span><span class="nv">RELEASE</span><span class="k">}</span>.sql
+</pre></div>
+
+<ul>
+<li>Execute <code>go</code> script and WAIT</li>
+</ul><div class="highlight"><pre>    <span class="nb">cd </span>bin
+    ./go
+</pre></div>
+
+<ul>
+<li>You will find the logs in the base dir like:</li>
+</ul><pre><code>    loading_log_20120511_0951.txt
+    loading_err_20120511_0951.txt
+</code></pre>
+
+<ul>
+<li>Backup patstat db with backup_db.sh</li>
+</ul><pre><code>    backup_db.sh
+</code></pre>
+
+<ul>
+<li>Make ITAAPPDB with mk_italian_db/select_italian_applicants.sql</li>
+</ul><div class="highlight"><pre>    <span class="nb">cd</span> ../make_italian_db
+    mysql -uroot -p
+</pre></div>
+
+<p>and in the mysql console:</p>
+
+<pre><code>    mysql&gt; source select_italian_applicants.sql
+</code></pre>
+
+<ul>
+<li>be happy</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">LOAD_PATSTAT maintained by <a href="https://github.com/exedre">exedre</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
